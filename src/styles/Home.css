@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Asset&family=Calistoga&family=Foldit&family=Passion+One&family=Poppins&family=Source+Sans+Pro:ital,wght@1,700&display=swap');
+#h3{
+    font-family: poppins-bold-webfont;
+    font-weight: 700;
+    text-align: center;
+    font-size: 25px;
+    color: #000;
+}
+
+div >p{
+    text-align: center;
+    font-size: 12px;
+    color: #777585;
+    margin: 4px 0 20px;
+    line-height: 24px;
+}
+.itsFree{
+    font-size: 11px;
+    display: inline-block;
+    background-color: #eaf6f2;
+    color: #2ba682;
+    text-align: center;
+    padding: 2px 8px;
+    margin: 3px 0 0;
+    -webkit-border-radius: 40px;
+}
+.socialLogin{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin: 15px 0 0;
+}
+.socialLoginTab{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    color: #1d1934;
+    font-size: 14px;
+    font-weight: 500;
+    border: 1px solid #f4f4f5;
+    padding: 8px 10px;
+    -webkit-border-radius: 8px;
+}
+.linkedInTab>img{
+    height: 22px;
+}
+.uploadResumeCont .uploadResume{
+    display: flex;
+    position: relative;
+    cursor: pointer;
+    gap: 20px;
+    background-color: #fcfafe;
+    padding: 14px;
+    margin: 15px 0 5px;
+    transition-duration: .6s;
+    border: 1px solid #6e00be;
+    -webkit-border-radius: 8px;
+    -webkit-box-sizing: border-box;
+}
+.uploadResumeCont .uploadResume .uploadResumeContent{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.contentTilte{
+    color: #6e00be;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+}
+.uploadResumeCont .uploadResume:after {
+    border: 8px dotted #fcfafe;
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    bottom: -4px;
+    right: -4px;
+    content: "";
+}
+.uploadResumeCont .uploadResume .uploadResumeContent .resumeFormat{
+    font-size: 12px;
+    line-height: 18px;
+    color: #455a64;
+    opacity: .7;
+    margin: 2px 0 0;
+}
