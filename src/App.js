@@ -32,8 +32,8 @@ function App() {
           <section className="sec1" >
             <div className={page === "page1" ? "d1" : "d11"}></div>
             <div className={page === "page2" ? "d2" : "d22"}></div>
-            <div className={page === "page3" ? "d2" : "d22"}></div>
-            <div className={page === "page4" ? "d2" : "d22"}></div>
+            <div className={page === "page3" ? "d3" : "d33"}></div>
+            {/* <div className={page === "page4" ? "d2" : "d22"}></div> */}
             <ul>
               <li
                 onClick={() => {
@@ -52,7 +52,7 @@ function App() {
                 <div> Verification Details</div>
               </li>
               <li>
-                <div className ={page === "page3" ? "liNumber2" : "liNumber22"}>
+                <div className ={page === "page3" ? "liNumber3" : "liNumber33"}>
                   3
                 </div>
                 <div>Personal Details</div>

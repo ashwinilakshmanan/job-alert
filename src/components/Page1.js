@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field, ErrorMessage,useFormik } from "formik";
 import "./Page1.css";
 import { useNavigate } from "react-router-dom";
 import { BsUpload } from "react-icons/bs";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
+import axios from "axios";
 
-import Button from "react-bootstrap/Button";
 
 function Page1({ page, setPage, setFormData }) {
+
   const [value, setValue] = useState();
 
   const [selectedFile, setSelectedFile] = useState(null);
+
+  const[success,setSuccess] = useState(null);
+  const[error,setError] = useState(null);
 
   function findPage() {
     setPage("page1");
@@ -31,21 +35,19 @@ function Page1({ page, setPage, setFormData }) {
     file: null,
   };
 
-  const handleSubmit = (values) => {
+ 
+  const handleSubmit =async (values) => {
     const formData = {
       ...values,
       file:selectedFile,
     }
     setFormData(formData);
     navigate("page2");
+    
+    
   };
 
-  // const handleFileChange = (event) => {
-  //   setSelectedFile(event.target.files[0]);
-  // };
-
-//   const file = event.currentTarget.files[0];
-// setSelectedFile(file);
+  
 
   const validateForm = (values) => {
     const errors = {};
@@ -143,6 +145,7 @@ function Page1({ page, setPage, setFormData }) {
                 name="fullName"
                 className="field form-control formTextbox"
                 placeholder="enter your full name"
+                
               />
               <ErrorMessage
                 name="fullName"
@@ -162,6 +165,7 @@ function Page1({ page, setPage, setFormData }) {
               name="email"
               className="field form-control formTextbox"
               placeholder="enter your email"
+             
             />
             <ErrorMessage
               name="email"
@@ -178,6 +182,7 @@ function Page1({ page, setPage, setFormData }) {
               name="password"
               className="field form-control formTextbox"
               placeholder="enter your password"
+              
             />
             <ErrorMessage
               name="password"
@@ -195,6 +200,8 @@ function Page1({ page, setPage, setFormData }) {
               value={value}
               onChange={setValue}
               className=" formMobile formTextbox"
+              name ="mobile"
+              
             />
           </div>
           <div>

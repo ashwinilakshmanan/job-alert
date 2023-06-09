@@ -4,8 +4,13 @@ import "./Page1.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useNavigate } from "react-router-dom";
 
+
 function Page2({ page, setPage, formData, setFormData }) {
   const [value, setValue] = useState();
+
+  const[success,setSuccess] = useState(null);
+  const[error,setError] = useState(null);
+
   const navigate = useNavigate("");
   function findPage() {
     setPage("page2");
@@ -26,6 +31,7 @@ function Page2({ page, setPage, formData, setFormData }) {
       salary: values.salary,
     });
     navigate("page3");
+    
     // You can perform further actions such as API calls or state updates here
   };
   const validateForm = (values) => {
@@ -108,7 +114,7 @@ function Page2({ page, setPage, formData, setFormData }) {
             type="submit"
             onClick={() => navigate("page3")}
           >
-            Submit
+            Continue
           </button>
           </div>
         </Form>

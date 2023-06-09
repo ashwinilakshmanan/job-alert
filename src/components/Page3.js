@@ -1,11 +1,13 @@
-import React,{useEffect} from "react";
+import React,{useEffect,useState} from "react";
 import {useNavigate} from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-
+import axios from "axios";
 
 
 function Page3({page, setPage, formData, setFormData }){
 
+  const[success,setSuccess] = useState(null);
+  const[error,setError] = useState(null);
     const navigate =useNavigate("");
 console.log("page3",page)
   function findPage() {
@@ -28,6 +30,8 @@ console.log("page3",page)
       place: values.place,
       state: values.state,
     });
+    console.log("datap3",formData);
+    
     // You can perform further actions such as API calls or state updates here
   };
 
@@ -125,7 +129,7 @@ console.log("page3",page)
               className="error-message"
             />
             </div>
-          <button className="cn" type ="submit"onClick={()=>navigate("page3")}>Submit</button>
+          <button className="cn" type ="submit">Submit</button>
         </Form>
       </Formik>
     </div>
