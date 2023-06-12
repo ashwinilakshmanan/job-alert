@@ -155,7 +155,7 @@ page::-webkit-scrollbar{
     width: 100px;
     height: 80px;
     position: absolute;
-    left: 82px;
+    left: 86px;
     border-right: 2px solid rgb(122, 15, 203);
   }
   .d11 {
@@ -177,7 +177,7 @@ page::-webkit-scrollbar{
     width: 100px;
     height: 80px;
     position: absolute;
-    left: 82px;
+    left: 88px;
     top: 150px;
     border-right: 2px solid rgb(187, 181, 192);
   }
@@ -194,7 +194,7 @@ page::-webkit-scrollbar{
     height: 80px;
     position: absolute;
     left: 90px;
-    top: 150px;
+    top: 238px;
     border-right: 2px solid rgb(187, 181, 192);
   }
   

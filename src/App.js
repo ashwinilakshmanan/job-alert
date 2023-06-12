@@ -12,7 +12,6 @@ function App() {
   const [formData, setFormData] = useState("");
   const navigate = useNavigate();
   console.log("pagee", page);
-  console.log("data", formData);
 
   return (
     <>
@@ -20,15 +19,24 @@ function App() {
         <header className="hd">
           <img id="logo" src={logo} alt="logo"></img>
 
-          <a href="#">
+          <a style={{textDecoration:"none"}} href="#">
             <span className="login">Already Registered? </span>
             <span className="text-color">Login</span>
           </a>
         </header>
-        <main style={{ display: "flex", justifyContent: "space-around" }}>
+        <main
+          style={{ display: "flex", justifyContent: "space-around" }}
+          className="mainDiv"
+        >
           <section className="sec1">
-            <div className={page === "page1" ? "d1" : "d11"}></div>
-            <div className={page === "page2" ? "d2" : "d22"}></div>
+            <div
+              className={
+                page === "page1" || "page2" || page === "page3" ? "d1" : "d11"
+              }
+            ></div>
+            <div
+              className={page === "page2" || page === "page3" ? "d2" : "d22"}
+            ></div>
             <div className={page === "page3" ? "d3" : "d33"}></div>
             {/* <div className={page === "page4" ? "d2" : "d22"}></div> */}
             <ul>
@@ -62,7 +70,6 @@ function App() {
               </li>
               <li>
                 <div className={page === "page3" ? "liNumber3" : "liNumber33"}>
-                <div className={page === "page3" ? "liNumber3" : "liNumber33"}>
                   3
                 </div>
                 <div>Personal Details</div>
@@ -75,16 +82,11 @@ function App() {
               </li> */}
             </ul>
           </section>
-          <section className="sec2 " id="page">
+          <section className="sec2" id="page">
             <Routes>
               <Route
                 path="page1"
                 element={
-                  <Page1
-                    page
-                    setPage={setPage}
-                    setFormData={setFormData}
-                  ></Page1>
                   <Page1
                     page
                     setPage={setPage}
@@ -99,26 +101,6 @@ function App() {
                 }
               />
               <Route
-                path="page1/page2"
-                element={
-                  <Page2
-                    setPage={setPage}
-                    setFormData={setFormData}
-                    formData={formData}
-                  ></Page2>
-                }
-              />
-              <Route
-                path="page1/page2/page3"
-                element={
-                  <Page3
-                    page
-                    setPage={setPage}
-                    setFormData={setFormData}
-                    formData={formData}
-                  ></Page3>
-                }
-              />
                 path="page1/page2"
                 element={
                   <Page2
