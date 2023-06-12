@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Formik, Form, Field, ErrorMessage,useFormik } from "formik";
+import { Formik, Form, Field, ErrorMessage, useFormik } from "formik";
 import "./Page1.css";
 import { useNavigate } from "react-router-dom";
 import { BsUpload } from "react-icons/bs";
@@ -7,15 +7,13 @@ import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 import axios from "axios";
 
-
 function Page1({ page, setPage, setFormData }) {
-
   const [value, setValue] = useState();
 
   const [selectedFile, setSelectedFile] = useState(null);
 
-  const[success,setSuccess] = useState(null);
-  const[error,setError] = useState(null);
+  const [success, setSuccess] = useState(null);
+  const [error, setError] = useState(null);
 
   function findPage() {
     setPage("page1");
@@ -35,19 +33,14 @@ function Page1({ page, setPage, setFormData }) {
     file: null,
   };
 
- 
-  const handleSubmit =async (values) => {
+  const handleSubmit = async (values) => {
     const formData = {
       ...values,
-      file:selectedFile,
-    }
+      file: selectedFile,
+    };
     setFormData(formData);
     navigate("page2");
-    
-    
   };
-
-  
 
   const validateForm = (values) => {
     const errors = {};
@@ -70,7 +63,7 @@ function Page1({ page, setPage, setFormData }) {
   };
 
   return (
-    <div className="page1">
+    <div className="page1 ">
       {" "}
       <Formik
         initialValues={initialValues}
@@ -112,7 +105,7 @@ function Page1({ page, setPage, setFormData }) {
               </div>
             </div>
             {/* upload resume */}
-            <div className="uploadResumeCont" style={{ width: "600px" }}>
+            <div className="uploadResumeCont upld" >
               <div className="uploadResume">
                 <div className="uploadResumeContent">
                   <div className="content">
@@ -122,7 +115,8 @@ function Page1({ page, setPage, setFormData }) {
                       accept="application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
                       style={{ display: "none" }}
                       onChange={(event) => {
-                        const file = event.currentTarget.files[0];}}
+                        const file = event.currentTarget.files[0];
+                      }}
                     ></input>
                     <div class="resumeFormat">
                       *Doc, Docx, RTF, PDF (Max file size- 6MB)
@@ -145,7 +139,6 @@ function Page1({ page, setPage, setFormData }) {
                 name="fullName"
                 className="field form-control formTextbox"
                 placeholder="enter your full name"
-                
               />
               <ErrorMessage
                 name="fullName"
@@ -165,7 +158,6 @@ function Page1({ page, setPage, setFormData }) {
               name="email"
               className="field form-control formTextbox"
               placeholder="enter your email"
-             
             />
             <ErrorMessage
               name="email"
@@ -182,7 +174,6 @@ function Page1({ page, setPage, setFormData }) {
               name="password"
               className="field form-control formTextbox"
               placeholder="enter your password"
-              
             />
             <ErrorMessage
               name="password"
@@ -195,21 +186,21 @@ function Page1({ page, setPage, setFormData }) {
             <label htmlFor="mobile" className="fieldLabel">
               Mobile
             </label>
-            <PhoneInput
+            <br></br>
+            <Field
+              type="mobile"
               placeholder="Enter phone number"
-              value={value}
-              onChange={setValue}
-              className=" formMobile formTextbox"
-              name ="mobile"
-              
+              className="formMobile formTextbox"
+              name="mobile" // Update the name attribute here
+            />
+            <ErrorMessage
+              name="mobile"
+              component="div"
+              className="error-message"
             />
           </div>
           <div>
-            <button
-              className="cn"
-              type="submit"
-              onClick={() => navigate("page2")}
-            >
+            <button className="cn" type="submit">
               Continue
             </button>
           </div>

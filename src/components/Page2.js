@@ -19,26 +19,25 @@ function Page2({ page, setPage, formData, setFormData }) {
     findPage();
   }, []);
   const initialValues = {
-    Position: "",
+    position: "",
     department: "",
     salary: "",
   };
   const handleSubmit = (values) => {
     setFormData({
       ...formData,
-      Position: values.Position,
+      position: values.position,
       department: values.department,
       salary: values.salary,
     });
     navigate("page3");
-    
-    // You can perform further actions such as API calls or state updates here
-  };
+   
+  };     
   const validateForm = (values) => {
-    const errors = {};
+    const errors = {}; 
 
-    if (!values.Position) {
-      errors.Position = "position is required";
+    if (!values.position) {
+      errors.position = "position is required";
     }
 
     if (!values.department) {
@@ -61,7 +60,7 @@ function Page2({ page, setPage, formData, setFormData }) {
         <Form>
           <div>
             <div className="fieldGroup">
-              <label htmlFor="Position" className=" fieldLabel">
+              <label htmlFor="position" className=" fieldLabel">
                 Position
               </label>
               <Field
@@ -112,7 +111,6 @@ function Page2({ page, setPage, formData, setFormData }) {
           <button
             className="cn"
             type="submit"
-            onClick={() => navigate("page3")}
           >
             Continue
           </button>

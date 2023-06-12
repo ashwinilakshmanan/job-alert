@@ -94,6 +94,9 @@ div >p{
 }
 
 /* upload resume*/
+.upld{
+    width: 600px!important;
+}
 .uploadResumeCont .uploadResume{
     display: flex;
     position: relative;
@@ -180,4 +183,46 @@ div >p{
     appearance: none;
     border-radius: 0;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+@media(max-width: 480px){
+    .sec1{
+        width: 0%;
+        display:none
+    }
+    .sec2{
+        width: 100%;
+    }
+  .heading{
+        left: 25px;
+  }
+  .heading2{
+    left: -36px;
+    line-height: 1;
+  }
+  .itsFree{
+    margin-left: 100px;
+  }
+  .socialLogin{
+    gap: 3px;
+    margin-left: 132px
+  }
+  .socialLoginTab{
+    font-size: 9px;
+    font-weight: 200;
+  }
+  .upld{
+    width: 315px!important;
+    margin-left: -22px;
+}
+.uploadButtonText{
+    margin-left: -19px;
+}
+.fieldGroup{
+    margin-left: -20px;
+}
+.formTextbox{
+    width: 312px!important;
+}
+
 }
