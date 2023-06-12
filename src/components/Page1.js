@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage, useFormik } from "formik";
-import { Formik, Form, Field, ErrorMessage, useFormik } from "formik";
 import "./Page1.css";
 import { useNavigate } from "react-router-dom";
 import { BsUpload } from "react-icons/bs";
