@@ -5,7 +5,9 @@
     overflow-y: hidden!important;
     overflow-x: hidden!important;
   }
-  
+  a{
+    text-decoration: none;
+  }
   ::-webkit-scrollbar{
     width:.5rem
   }
@@ -52,17 +54,8 @@
     height: 100vh;
     background-color: rgb(255, 255, 255);
     margin-top: 20px;
-    border-radius: 20px;
-    overflow: hidden;
-    
+    border-radius: 20px;   
   }
-  #page{
-    overflow-y: scroll!important;
-  }
-page::-webkit-scrollbar{
-    display: none;
-}
-
   li {
     margin: 50px;
     font-size: 20px;
@@ -73,7 +66,7 @@ page::-webkit-scrollbar{
   }
   .liNumber1 {
     width: 50px;
-    height: 40px;
+    height: 50px;
     border: 2px solid rgb(122, 15, 203);
     text-align: center;
     border-radius: 50%;
@@ -85,7 +78,7 @@ page::-webkit-scrollbar{
   }
   .liNumber11 {
     width: 50px;
-    height: 40px;
+    height: 50px;
     border: 2px solid rgb(206, 197, 212);
     background-color: rgb(255, 255, 255);
     text-align: center;
@@ -97,7 +90,7 @@ page::-webkit-scrollbar{
   }
   .liNumber2 {
     width: 55px;
-    height: 40px;
+    height: 52px;
     border: 2px solid rgb(122, 15, 203);
     text-align: center;
     border-radius: 50%;
@@ -111,7 +104,7 @@ page::-webkit-scrollbar{
   
   .liNumber22 {
     width: 55px;
-    height: 40px;
+    height: 52px;
     border: 2px solid rgb(206, 197, 212);
     text-align: center;
     border-radius: 50%;
@@ -124,26 +117,26 @@ page::-webkit-scrollbar{
   }
   .liNumber3 {
     width: 55px;
-    height: 40px;
+    height: 50px;
     border: 2px solid rgb(122, 15, 203);
     text-align: center;
     border-radius: 50%;
     position: relative;
     top: -5px;
     margin-right: 30px;
-    margin-left: 1px;
+    margin-left: -2px;
     padding-top: 10px;
     background-color: rgb(255, 255, 255);
   }
   
   .liNumber33 {
     width: 55px;
-    height: 40px;
+    height: 52px;
     border: 2px solid rgb(206, 197, 212);
     text-align: center;
     border-radius: 50%;
     position: relative;
-    margin-left: 1px;
+    margin-left: -2px;
     top: -5px;
     margin-right: 30px;
     padding-top: 10px;
@@ -153,21 +146,21 @@ page::-webkit-scrollbar{
     width: 100px;
     height: 80px;
     position: absolute;
-    left: 90px;
+    left: 82px;
     border-right: 2px solid rgb(122, 15, 203);
   }
   .d11 {
     width: 100px;
-    height: 80px;
+    height: 85px;
     position: absolute;
-    left: 90px;
+    left: 82px;
     border-right: 2px solid rgb(187, 181, 192);
   }
   .d2 {
     width: 100px;
     height: 80px;
     position: absolute;
-    left: 90px;
+    left: 82px;
     top: 150px;
     border-right: 2px solid rgb(122, 15, 203);
   }
@@ -175,7 +168,7 @@ page::-webkit-scrollbar{
     width: 100px;
     height: 80px;
     position: absolute;
-    left: 90px;
+    left: 82px;
     top: 150px;
     border-right: 2px solid rgb(187, 181, 192);
   }
@@ -183,17 +176,17 @@ page::-webkit-scrollbar{
     width: 100px;
     height: 80px;
     position: absolute;
-    left: 90px;
-    top: 150px;
+    left: 82px;
+    top: 250px;
     border-right: 2px solid rgb(122, 15, 203);
   }
   .d33 {
     width: 100px;
     height: 80px;
     position: absolute;
-    left: 90px;
-    top: 150px;
-    border-right: 2px solid rgb(187, 181, 192);
+    left: 82px;
+    top: 250px;
+    border-right: 2px solid rgb(182, 192, 181);
   }
   
 

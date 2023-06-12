@@ -15,23 +15,28 @@ function App() {
 
   return (
     <>
-      
-      <div >
+      <div>
         <header className="hd">
           <img id="logo" src={logo} alt="logo"></img>
-         
-            <a  href="#">
-              <span className ="login">Already Registered? </span>
-              <span className ="text-color">
-                Login
-              </span>
-            </a>
-         
+
+          <a style={{textDecoration:"none"}} href="#">
+            <span className="login">Already Registered? </span>
+            <span className="text-color">Login</span>
+          </a>
         </header>
-        <main style={{ display: "flex", justifyContent: "space-around" }} >
-          <section className="sec1" >
-            <div className={page === "page1" ? "d1" : "d11"}></div>
-            <div className={page === "page2" ? "d2" : "d22"}></div>
+        <main
+          style={{ display: "flex", justifyContent: "space-around" }}
+          className="mainDiv"
+        >
+          <section className="sec1">
+            <div
+              className={
+                page === "page1" || "page2" || page === "page3" ? "d1" : "d11"
+              }
+            ></div>
+            <div
+              className={page === "page2" || page === "page3" ? "d2" : "d22"}
+            ></div>
             <div className={page === "page3" ? "d3" : "d33"}></div>
             {/* <div className={page === "page4" ? "d2" : "d22"}></div> */}
             <ul>
@@ -40,19 +45,31 @@ function App() {
                   navigate("page1");
                 }}
               >
-                <div className={page === "page1" ? "liNumber1" : "liNumber11"}>
+                <div
+                  className={
+                    page === "page1" || page === "page2" || page === "page3"
+                      ? "liNumber1"
+                      : "liNumber11"
+                  }
+                >
                   1
                 </div>
                 <div> Basic Details</div>
               </li>
               <li>
-                <div className={page === "page2" ? "liNumber2" : "liNumber22"}>
+                <div
+                  className={
+                    page === "page2" || page === "page3"
+                      ? "liNumber2"
+                      : "liNumber22"
+                  }
+                >
                   2
                 </div>
                 <div> Verification Details</div>
               </li>
               <li>
-                <div className ={page === "page3" ? "liNumber3" : "liNumber33"}>
+                <div className={page === "page3" ? "liNumber3" : "liNumber33"}>
                   3
                 </div>
                 <div>Personal Details</div>
@@ -65,12 +82,16 @@ function App() {
               </li> */}
             </ul>
           </section>
-          <section className="sec2" id ="page">
+          <section className="sec2" id="page">
             <Routes>
               <Route
                 path="page1"
                 element={
-                  <Page1 page setPage={setPage} setFormData={setFormData}></Page1>
+                  <Page1
+                    page
+                    setPage={setPage}
+                    setFormData={setFormData}
+                  ></Page1>
                 }
               />
               <Route
@@ -80,27 +101,26 @@ function App() {
                 }
               />
               <Route
-              path="page1/page2"
-              element={
-                <Page2
-                  setPage={setPage}
-                  setFormData={setFormData}
-                  formData={formData}
-                ></Page2>
-              }
-            />
-            <Route
-              path="page1/page2/page3"
-              element={
-                <Page3
-                page
-                  setPage={setPage}
-                  setFormData={setFormData}
-                  formData={formData}
-                ></Page3>
-              }
-            />
-           
+                path="page1/page2"
+                element={
+                  <Page2
+                    setPage={setPage}
+                    setFormData={setFormData}
+                    formData={formData}
+                  ></Page2>
+                }
+              />
+              <Route
+                path="page1/page2/page3"
+                element={
+                  <Page3
+                    page
+                    setPage={setPage}
+                    setFormData={setFormData}
+                    formData={formData}
+                  ></Page3>
+                }
+              />
             </Routes>
           </section>
         </main>

@@ -1,15 +1,13 @@
-import React,{useEffect,useState} from "react";
-import {useNavigate} from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from "axios";
 
-
-function Page3({page, setPage, formData, setFormData }){
-
-  const[success,setSuccess] = useState(null);
-  const[error,setError] = useState(null);
-    const navigate =useNavigate("");
-console.log("page3",page)
+function Page3({ page, setPage, formData, setFormData }) {
+  const [success, setSuccess] = useState(null);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate("");
+  console.log("page3", page);
   function findPage() {
     setPage("page3");
   }
@@ -20,121 +18,130 @@ console.log("page3",page)
     fullName: "",
     address: "",
     place: "",
-    state:"",
+    state: "",
   };
   const handleSubmit = (values) => {
     setFormData({
       ...formData,
-      fullName:values.fullname,
-      address:values.address,
+      address: values.address,
       place: values.place,
       state: values.state,
     });
-    console.log("datap3",formData);
-    
-    // You can perform further actions such as API calls or state updates here
   };
+  useEffect(() => {
+    fetch("http://localhost:8080/api/employees", {
+      method: "POST", // or 'PUT'
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+      console.log("mydata",formData)
+  }, [formData]);
 
   const validateForm = (values) => {
     const errors = {};
 
-    if (!values.Place) {
-      errors.Place = "Place is required";
+    if (!values.address) {
+      errors.address = "address is required";
     }
 
-    if (!values.Password) {
-      errors.Password = "Password is required";
+    if (!values.place) {
+      errors.place = "place is required";
     }
-
+    if (!values.state) {
+      errors.state = "state is required";
+    }
     return errors;
   };
-  return(
+  return (
     <>
-    <div className="page">
-      {" "}
-      <Formik
-        initialValues={initialValues}
-        validate={validateForm}
-        onSubmit={handleSubmit}
-      >
-        <Form>
-          <div>
+      <div className="page">
+        {" "}
+        <Formik
+          initialValues={initialValues}
+          validate={validateForm}
+          onSubmit={handleSubmit}
+        >
+          <Form>
+            <div>
+              <div className="fieldGroup">
+                <label htmlFor="address" className=" fieldLabel">
+                  address
+                </label>
+                <Field
+                  type="text"
+                  name="address"
+                  className="field form-control formTextbox"
+                  placeholder="enter your address"
+                />
+                <ErrorMessage
+                  name="address"
+                  component="div"
+                  className="error-message"
+                />
+              </div>
 
-          <div className="fieldGroup">
-              <label htmlFor="fullName" className=" fieldLabel">
-                Full Name
+              <div className="fieldGroup">
+                <label htmlFor="place" className="FieldLabel">
+                  Place
+                </label>
+                {"\u00A0"}
+                {"\u00A0"}
+                {"\u00A0"}
+                {"\u00A0"}
+                {"\u00A0"}
+                {"\u00A0"}
+                <Field
+                  type="text"
+                  name="place"
+                  className="field form-control formTextbox"
+                  placeholder="Enter your place"
+                />
+                <ErrorMessage
+                  name="place"
+                  component="div"
+                  className="error-message"
+                />
+              </div>
+            </div>
+            <div className="fieldGroup">
+              <label htmlFor="state" className="FieldLabel">
+                State
               </label>
+              {"\u00A0"}
+              {"\u00A0"}
+              {"\u00A0"}
+              {"\u00A0"}
+              {"\u00A0"}
+              {"\u00A0"}
               <Field
                 type="text"
-                name="fullName"
+                name="state"
                 className="field form-control formTextbox"
-                placeholder="enter your full name"
+                placeholder="Enter your state"
               />
               <ErrorMessage
-                name="fullName"
+                name="state"
                 component="div"
                 className="error-message"
               />
             </div>
-            
-          <div className="fieldGroup">
-              <label htmlFor="address" className=" fieldLabel">
-                address
-              </label>
-              <Field
-                type="text"
-                name="address"
-                className="field form-control formTextbox"
-                placeholder="enter your address"
-              />
-              <ErrorMessage
-                name="address"
-                component="div"
-                className="error-message"
-              />
-            </div>
-
-            <div className ="fieldGroup">
-            <label htmlFor="place" className ="FieldLabel">Place</label>
-            {"\u00A0"}
-            {"\u00A0"}
-            {"\u00A0"}
-            {"\u00A0"}
-            {"\u00A0"}
-            {"\u00A0"}
-            <Field type="text" name="Place" 
-                className="field form-control formTextbox"
-                placeholder = "Enter your place" />
-            <ErrorMessage
-              name="place"
-              component="div"
-              className="error-message"
-            />
-            </div>
-          </div>
-          <div className ="fieldGroup">
-            <label htmlFor="state" className ="FieldLabel">State</label>
-            {"\u00A0"}
-            {"\u00A0"}
-            {"\u00A0"}
-            {"\u00A0"}
-            {"\u00A0"}
-            {"\u00A0"}
-            <Field type="text" name="state" 
-                className="field form-control formTextbox"
-                placeholder = "Enter your state" />
-            <ErrorMessage
-              name="state"
-              component="div"
-              className="error-message"
-            />
-            </div>
-          <button className="cn" type ="submit">Submit</button>
-        </Form>
-      </Formik>
-    </div>
+            <button className="cn" type="submit">
+              Submit
+            </button>
+          </Form>
+        </Formik>
+      </div>
     </>
-  )
+  );
 }
 
 export default Page3;
