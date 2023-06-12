@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage, useFormik } from "formik";
+import { Formik, Form, Field, ErrorMessage, useFormik } from "formik";
 import "./Page1.css";
 import { useNavigate } from "react-router-dom";
 import { BsUpload } from "react-icons/bs";
@@ -110,19 +111,22 @@ function Page1({ page, setPage, setFormData }) {
                 <div className="uploadResumeContent">
                   <div className="content">
                     <div className="contentTilte">Upload Resume</div>
+
                     <input
+                      id="file"
+                      name="file"
                       type="file"
                       accept="application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
                       style={{ display: "none" }}
-                      onChange={(event) => {
-                        const file = event.currentTarget.files[0];
-                      }}
-                    ></input>
+                     
+                    />
                     <div class="resumeFormat">
                       *Doc, Docx, RTF, PDF (Max file size- 6MB)
                     </div>
                   </div>
-                  <BsUpload className=" uploadIcon" />
+                  <BsUpload className=" uploadIcon" onChange={(event) => {
+                        setSelectedFile("file", event.currentTarget.files[0]);
+                      }} />
                 </div>
               </div>
             </div>

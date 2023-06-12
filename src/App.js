@@ -37,18 +37,31 @@ function App() {
                   navigate("page1");
                 }}
               >
-                <div className={page === "page1" ? "liNumber1" : "liNumber11"}>
+                <div
+                  className={
+                    page === "page1" || page === "page2" || page === "page3"
+                      ? "liNumber1"
+                      : "liNumber11"
+                  }
+                >
                   1
                 </div>
                 <div> Basic Details</div>
               </li>
               <li>
-                <div className={page === "page2" ? "liNumber2" : "liNumber22"}>
+                <div
+                  className={
+                    page === "page2" || page === "page3"
+                      ? "liNumber2"
+                      : "liNumber22"
+                  }
+                >
                   2
                 </div>
                 <div> Verification Details</div>
               </li>
               <li>
+                <div className={page === "page3" ? "liNumber3" : "liNumber33"}>
                 <div className={page === "page3" ? "liNumber3" : "liNumber33"}>
                   3
                 </div>
@@ -72,6 +85,11 @@ function App() {
                     setPage={setPage}
                     setFormData={setFormData}
                   ></Page1>
+                  <Page1
+                    page
+                    setPage={setPage}
+                    setFormData={setFormData}
+                  ></Page1>
                 }
               />
               <Route
@@ -81,6 +99,26 @@ function App() {
                 }
               />
               <Route
+                path="page1/page2"
+                element={
+                  <Page2
+                    setPage={setPage}
+                    setFormData={setFormData}
+                    formData={formData}
+                  ></Page2>
+                }
+              />
+              <Route
+                path="page1/page2/page3"
+                element={
+                  <Page3
+                    page
+                    setPage={setPage}
+                    setFormData={setFormData}
+                    formData={formData}
+                  ></Page3>
+                }
+              />
                 path="page1/page2"
                 element={
                   <Page2

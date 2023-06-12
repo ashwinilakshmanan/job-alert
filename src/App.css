@@ -1,25 +1,25 @@
 .App {
-  height: 100vh;
-  width: 100vw;
-  background-color: rgb(247, 247, 248);
-  overflow-y: hidden!important;
-  overflow-x: hidden!important;
-}
-a{
-  text-decoration: none;
-}
-::-webkit-scrollbar{
-  width:.5rem
-}
-::-webkit-scrollbar-track{
-  background: #f1f1f1;
-}
-::-webkit-scrollbar-thumb{
-  background: #888;
-  border-radius: 1rem;
-  border:0.2rem solid transparent;
-  background-clip: content-box;
-}
+    height: 100vh;
+    width: 100vw;
+    background-color: rgb(247, 247, 248);
+    overflow-y: hidden!important;
+    overflow-x: hidden!important;
+  }
+  a{
+    text-decoration: none;
+  }
+  ::-webkit-scrollbar{
+    width:.5rem
+  }
+  ::-webkit-scrollbar-track{
+    background: #f1f1f1;
+  }
+  ::-webkit-scrollbar-thumb{
+    background: #888;
+    border-radius: 1rem;
+    border:0.2rem solid transparent;
+    background-clip: content-box;
+  }
 
 ::-webkit-scrollbar-thumb:hover{
   background: #555;
@@ -58,7 +58,12 @@ a{
     overflow: hidden;
     
   }
- 
+  #page{
+    overflow-y: scroll!important;
+  }
+page::-webkit-scrollbar{
+    display: none;
+}
 
   li {
     margin: 50px;
@@ -70,7 +75,7 @@ a{
   }
   .liNumber1 {
     width: 50px;
-    height: 40px;
+    height: 50px;
     border: 2px solid rgb(122, 15, 203);
     text-align: center;
     border-radius: 50%;
@@ -82,7 +87,7 @@ a{
   }
   .liNumber11 {
     width: 50px;
-    height: 40px;
+    height: 50px;
     border: 2px solid rgb(206, 197, 212);
     background-color: rgb(255, 255, 255);
     text-align: center;
@@ -94,7 +99,7 @@ a{
   }
   .liNumber2 {
     width: 55px;
-    height: 40px;
+    height: 52px;
     border: 2px solid rgb(122, 15, 203);
     text-align: center;
     border-radius: 50%;
@@ -108,7 +113,7 @@ a{
   
   .liNumber22 {
     width: 55px;
-    height: 40px;
+    height: 52px;
     border: 2px solid rgb(206, 197, 212);
     text-align: center;
     border-radius: 50%;
@@ -150,21 +155,21 @@ a{
     width: 100px;
     height: 80px;
     position: absolute;
-    left: 90px;
+    left: 82px;
     border-right: 2px solid rgb(122, 15, 203);
   }
   .d11 {
     width: 100px;
-    height: 80px;
+    height: 85px;
     position: absolute;
-    left: 90px;
+    left: 82px;
     border-right: 2px solid rgb(187, 181, 192);
   }
   .d2 {
     width: 100px;
     height: 80px;
     position: absolute;
-    left: 90px;
+    left: 82px;
     top: 150px;
     border-right: 2px solid rgb(122, 15, 203);
   }
@@ -172,7 +177,7 @@ a{
     width: 100px;
     height: 80px;
     position: absolute;
-    left: 90px;
+    left: 82px;
     top: 150px;
     border-right: 2px solid rgb(187, 181, 192);
   }
@@ -188,9 +193,9 @@ a{
     width: 100px;
     height: 80px;
     position: absolute;
-    left: 88px;
-    top: 243px;
-    border-right: 2px solid rgb(182, 192, 181);
+    left: 90px;
+    top: 150px;
+    border-right: 2px solid rgb(187, 181, 192);
   }
   
 
