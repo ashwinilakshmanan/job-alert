@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Page1 from "./components/Page1";
 import Page2 from "./components/Page2";
 import Page3 from "./components/Page3";
+import Jobs from "./components/Jobs";
 import { useState } from "react";
 import logo from "./assets/logo.png";
 
@@ -38,7 +39,7 @@ function App() {
               className={page === "page2" || page === "page3" ? "d2" : "d22"}
             ></div>
             <div className={page === "page3" ? "d3" : "d33"}></div>
-            {/* <div className={page === "page4" ? "d2" : "d22"}></div> */}
+            <div className={page === "Jobs" ? "d4" : "d44"}></div>
             <ul>
               <li
                 onClick={() => {
@@ -74,12 +75,12 @@ function App() {
                 </div>
                 <div>Personal Details</div>
               </li>
-              {/* <li>
-                <div className ={page ==="page4" ? "liNumber2" : "liNumber22"}>
+              <li>
+                <div className ={page ==="Jobs" ? "liNumber4" : "liNumber44"}>
                   4
                 </div>
                 <div>Start Job Search</div>
-              </li> */}
+              </li>
             </ul>
           </section>
           <section className="sec2" id="page">
