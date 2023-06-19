@@ -102,6 +102,19 @@ div >p{
 .upld{
     width: 600px!important;
 }
+
+.upldResume{
+    display: flex;
+    margin: 15px 0 5px;
+    border: 2px dashed #6e00be;
+    padding: 14px;
+    -webkit-border-radius: 8px;
+    flex-direction: column;
+}
+
+.upload{
+    margin: 10px 0 10px;
+}
 .uploadResumeCont .uploadResume{
     display: flex;
     position: relative;
