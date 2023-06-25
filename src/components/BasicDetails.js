@@ -1,26 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Formik, Form, Field, ErrorMessage, useFormik } from "formik";
 import "./Page1.css";
 import { useNavigate } from "react-router-dom";
 import { BsUpload } from "react-icons/bs";
 import "react-phone-number-input/style.css";
+import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
+import { auth } from "./firebase";
+import { Toaster, toast } from "react-hot-toast";
+import VerificationCenter from "./VerificationCenter";
+import PhoneInput from "react-phone-number-input";
 
 function BasicDetails({
   page,
   setPage,
   setFormData,
-  OTP,
-  setOTP,
-  showOTP,
-  setShowOTP,
+  formData
 }) {
-  const [value, setValue] = useState();
+  // const [value, setValue] = useState();
 
   const [selectedFile, setSelectedFile] = useState(null);
+  const recaptchaVerifierRef = useRef(null);
 
-  const [success, setSuccess] = useState(null);
-  const [error, setError] = useState(null);
-  const [mobile, setMobile] = useState("");
+  // const [success, setSuccess] = useState(null);
+  // const [error, setError] = useState(null);
+  // const [mobile, setMobile] = useState("");
+  const [OTP, setOTP] = useState("");
+  const [showOTP, setShowOTP] = useState(false);
 
   function findPage() {
     setPage("basicDetails");
@@ -47,6 +52,9 @@ function BasicDetails({
     };
     setFormData(formData);
     navigate("verificationCenter");
+
+    // console.log("ph",values.mobile);
+    onSignup(values.mobile);
   };
 
   const validateForm = (values) => {
@@ -77,92 +85,144 @@ function BasicDetails({
     return errors;
   };
 
+  function onCaptchVerify() {
+    if (!window.recaptchaVerifier) {
+      window.recaptchaVerifier = new RecaptchaVerifier(
+        "recaptcha-container",
+        {
+          size: "invisible",
+          callback: (response) => {
+            onSignup();
+          },
+          "expired-callback": () => {},
+        },
+        auth
+      );
+    }
+  }
+
+  function onSignup(mobile) {
+    onCaptchVerify();
+
+    const appVerifier = window.recaptchaVerifier;
+
+    const formatPh = "+919497606639" + mobile;
+    signInWithPhoneNumber(auth, formatPh, appVerifier)
+      .then((confirmationResult) => {
+        window.confirmationResult = confirmationResult;
+        setShowOTP(true);
+        toast.success("OTP send successfully");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  function onOTPVerify() {
+    window.confirmationResult.confirm(OTP).then(async (res) => {
+      console.log(res);
+      navigate("verificationCenter")
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
+  }
+  
+  
+
   return (
-    <div className="page1 ">
-      {" "}
-      <Formik
-        initialValues={initialValues}
-        validate={validateForm}
-        onSubmit={handleSubmit}
-      >
-        <Form>
-          <div>
-            <div>
-              <h3 className="heading">Create an Account</h3>
-              <p className="heading2">
-                It only takes a couple of minutes to get started!
-              </p>
-            </div>
-            <div>
-              <span className="itsFree">it's free</span>
-            </div>
-            <div className="socialLogin">
-              <div className="linkedinTab socialLoginTab">
-                <a href="https://www.linkedin.com/login">
-                  <img
-                    src="https://media.foundit.in/trex/search/images/linkedin.svg"
-                    alt="icon"
-                  />
-                  LinkedIn
-                </a>
-              </div>
-              <div className="googleTab socialLoginTab">
-                <a href="https://www.google.com">
-                  {" "}
-                  <img
-                    src="https://media.foundit.in/trex/search/images/google.svg"
-                    alt="icon"
-                  />
-                  Google
-                </a>
-              </div>
-              <div className="facebookTab socialLoginTab">
-                <a href="https://www.facebook.com/login/">
-                  <img
-                    src="https://media.foundit.in/trex/search/images/facebook.svg"
-                    alt="icon"
-                  />
-                  Facebook
-                </a>
-              </div>
-            </div>
+    <div>
+      <Toaster toastOptions={{ duration: 4000 }} />
+       <div id="recaptcha-container"></div>
+      {showOTP ? (
+        
+        <VerificationCenter />
+      ) : (
+        <div className="page1 ">
+          {" "}
+          <Formik
+            initialValues={initialValues}
+            validate={validateForm}
+            onSubmit={handleSubmit}
+          >
+            <Form>
+              <div>
+                <div>
+                  <h3 className="heading">Create an Account</h3>
+                  <p className="heading2">
+                    It only takes a couple of minutes to get started!
+                  </p>
+                </div>
+                <div>
+                  <span className="itsFree">it's free</span>
+                </div>
+                <div className="socialLogin">
+                  <div className="linkedinTab socialLoginTab">
+                    <a href="https://www.linkedin.com/login">
+                      <img
+                        src="https://media.foundit.in/trex/search/images/linkedin.svg"
+                        alt="icon"
+                      />
+                      LinkedIn
+                    </a>
+                  </div>
+                  <div className="googleTab socialLoginTab">
+                    <a href="https://www.google.com">
+                      {" "}
+                      <img
+                        src="https://media.foundit.in/trex/search/images/google.svg"
+                        alt="icon"
+                      />
+                      Google
+                    </a>
+                  </div>
+                  <div className="facebookTab socialLoginTab">
+                    <a href="https://www.facebook.com/login/">
+                      <img
+                        src="https://media.foundit.in/trex/search/images/facebook.svg"
+                        alt="icon"
+                      />
+                      Facebook
+                    </a>
+                  </div>
+                </div>
 
-            {/* upload resume */}
-            <div className="uploadResumeCont upld">
-              <div className="uploadResume">
-                <div className="uploadResumeContent">
-                  <div className="content">
-                    <div className="contentTilte">Upload Resume</div>
+                {/* upload resume */}
+                <div className="uploadResumeCont upld">
+                  <div className="uploadResume">
+                    <div className="uploadResumeContent">
+                      <div className="content">
+                        <div className="contentTilte">Upload Resume</div>
 
-                    <input
-                      id="file"
-                      name="file"
-                      type="file"
-                      accept="application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                      style={{ display: "none" }}
-                    />
+                        <input
+                          id="file"
+                          name="file"
+                          type="file"
+                          accept="application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                          style={{ display: "none" }}
+                        />
 
-                    <div class="resumeFormat">
-                      *Doc, Docx, RTF, PDF (Max file size- 6MB)
+                        <div class="resumeFormat">
+                          *Doc, Docx, RTF, PDF (Max file size- 6MB)
+                        </div>
+                      </div>
+                      <BsUpload
+                        className=" uploadIcon"
+                        type="file"
+                        name="file"
+                        onChange={(event) => {
+                          setSelectedFile(event.target.files);
+                        }}
+                      />
                     </div>
                   </div>
-                  <BsUpload
-                    className=" uploadIcon"
-                    type="file"
-                    name="file"
-                    onChange={(event) => {
-                      setSelectedFile(event.target.files);
-                    }}
-                  />
                 </div>
-              </div>
-            </div>
-            <div className="uploadButtonText">
-              Profiles with resumes are 3x more likely to be noticed by
-              recruiters
-            </div>
+                <div className="uploadButtonText">
+                  Profiles with resumes are 3x more likely to be noticed by
+                  recruiters
+                </div>
 
-            {/* <div className="uploadResumeCont upld">
+                {/* <div className="uploadResumeCont upld">
               <div className="upldResume">
                 <div className="contentTilte"> Upload Resume</div>
 
@@ -182,82 +242,88 @@ function BasicDetails({
               recruiters
             </div> */}
 
-            <div className="fieldGroup">
-              <label htmlFor="fullName" className=" fieldLabel">
-                Full Name
-              </label>
-              <Field
-                type="text"
-                name="fullName"
-                className="field form-control formTextbox"
-                placeholder="enter your full name"
-              />
-              <ErrorMessage
-                name="fullName"
-                component="div"
-                className="error-message"
-              />
-            </div>
-          </div>
-          <div className="fieldGroup">
-            <label htmlFor="email" className=" fieldLabel">
-              Email ID{" "}
-            </label>
-            {"\u00A0"}
-            {"\u00A0"}
-            <Field
-              type="email"
-              name="email"
-              className="field form-control formTextbox"
-              placeholder="enter your email"
-            />
-            <ErrorMessage
-              name="email"
-              component="div"
-              className="error-message"
-            />
-          </div>
-          <div className="fieldGroup">
-            <label htmlFor="password" className="fieldLabel">
-              Password
-            </label>
-            <Field
-              type="password"
-              name="password"
-              className="field form-control formTextbox"
-              placeholder="enter your password"
-            />
-            <ErrorMessage
-              name="password"
-              component="div"
-              className="error-message"
-            />
-          </div>
+                <div className="fieldGroup">
+                  <label htmlFor="fullName" className=" fieldLabel">
+                    Full Name
+                  </label>
+                  <Field
+                    type="text"
+                    name="fullName"
+                    className="field form-control formTextbox"
+                    placeholder="enter your full name"
+                  />
+                  <ErrorMessage
+                    name="fullName"
+                    component="div"
+                    className="error-message"
+                  />
+                </div>
+              </div>
+              <div className="fieldGroup">
+                <label htmlFor="email" className=" fieldLabel">
+                  Email ID{" "}
+                </label>
+                {"\u00A0"}
+                {"\u00A0"}
+                <Field
+                  type="email"
+                  name="email"
+                  className="field form-control formTextbox"
+                  placeholder="enter your email"
+                />
+                <ErrorMessage
+                  name="email"
+                  component="div"
+                  className="error-message"
+                />
+              </div>
+              <div className="fieldGroup">
+                <label htmlFor="password" className="fieldLabel">
+                  Password
+                </label>
+                <Field
+                  type="password"
+                  name="password"
+                  className="field form-control formTextbox"
+                  placeholder="enter your password"
+                />
+                <ErrorMessage
+                  name="password"
+                  component="div"
+                  className="error-message"
+                />
+              </div>
 
-          <div className="fieldGroup">
-            <label htmlFor="mobile" className="fieldLabel">
-              Mobile
-            </label>
-            <br></br>
-            <Field
-              type="mobile"
-              placeholder="Enter phone number"
-              className="formMobile formTextbox"
-              name="mobile" // Update the name attribute here
-            />
-            <ErrorMessage
-              name="mobile"
-              component="div"
-              className="error-message"
-            />
-          </div>
-          <div>
-            <button className="cn" type="submit">
-              Continue
-            </button>
-          </div>
-        </Form>
-      </Formik>
+              
+
+              <div className="fieldGroup">
+                <label htmlFor="mobile" className="fieldLabel">
+                  Mobile
+                </label>
+                <br></br>
+                <Field
+                  type="mobile"
+                  placeholder="Enter phone number"
+                  className="formMobile formTextbox"
+                  name="mobile" // Update the name attribute here
+                />
+
+
+                <ErrorMessage
+                  name="mobile"
+                  component="div"
+                  className="error-message"
+                />
+              </div>
+              <div>
+                <button className="cn" type="submit" >
+                  Continue
+                </button>
+              </div>
+            </Form>
+          </Formik>
+        </div>
+       )}  
     </div>
   );
 }

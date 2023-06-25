@@ -22,3 +22,48 @@
 .error-message{
     color: red;
 }
+.heading{
+    font-family: poppins-bold-webfont;
+    text-align: center;
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-weight: 1000;
+    font-size: 30px;
+}
+#h3{
+    font-family: poppins-bold-webfont;
+    font-weight: 700;
+    text-align: start;
+    margin-left: 15px;
+    font-size: 25px;
+    color: #000;
+    
+}
+.verify{
+    margin: 10vw;
+    margin-left: 2vw;
+}
+
+.otp{
+    color: #000;
+    margin: 25px;
+    font-weight: 500;
+    font-size: 20px;
+    text-align: start;
+}
+.verify-btn{
+    margin-top: 20px;
+    margin-left: 55px;
+}
+.otp-group {
+    display: flex;
+    column-gap: 10px;
+    border-radius: 5px;
+    outline: none;
+    font-size: 2rem;
+    
+  }
+  
+  
