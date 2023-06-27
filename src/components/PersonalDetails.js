@@ -139,6 +139,7 @@ function PersonalDetails({ page, setPage, formData, setFormData }) {
               type="submit"
               onClick={() => {
                 alert("Registered Successfully");
+                navigate("/")
               }}
             >
               Submit
