@@ -20,7 +20,9 @@ function App() {
     <>
       <div>
         <header className="hd">
-          <a href="/"><img id="logo" src={logo} alt="logo"></img></a>
+          <a href="/">
+            <img id="logo" src={logo} alt="logo"></img>
+          </a>
 
           <a style={{ textDecoration: "none" }} href="/basicDetails">
             <span className="login text-color">Register </span>
@@ -34,75 +36,73 @@ function App() {
             className="mainDiv"
           >
             <section className="sec1">
-            <div
-              className={
-                page === "basicDetails" ||
-                "educationalDetails" ||
-                page === "personalDetails"
-                  ? "d1"
-                  : "d11"
-              }
-            ></div>
-            <div
-              className={
-                page === "educationalDetails" || page === "personalDetails"
-                  ? "d2"
-                  : "d22"
-              }
-            ></div>
-            <div
-              className={page === "personalDetails" ? "d3" : "d33"}
-            ></div>
-            {/* <div className={page === "Jobs" ? "d4" : "d44"}></div> */}
-            <ul>
-              <li
-                onClick={() => {
-                  navigate("basicDetails");
-                }}
-              >
-                <div
-                  className={
-                    page === "basicDetails" ||
-                    page === "educationalDetails" ||
-                    page === "personalDetails"
-                      ? "liNumber1"
-                      : "liNumber11"
-                  }
+              <div
+                className={
+                  page === "basicDetails" ||
+                  "educationalDetails" ||
+                  page === "personalDetails"
+                    ? "d1"
+                    : "d11"
+                }
+              ></div>
+              <div
+                className={
+                  page === "educationalDetails" || page === "personalDetails"
+                    ? "d2"
+                    : "d22"
+                }
+              ></div>
+              <div className={page === "personalDetails" ? "d3" : "d33"}></div>
+              {/* <div className={page === "Jobs" ? "d4" : "d44"}></div> */}
+              <ul>
+                <li
+                  onClick={() => {
+                    navigate("basicDetails");
+                  }}
                 >
-                  1
-                </div>
-                <div> Basic Details</div>
-              </li>
-              <li>
-                <div
-                  className={
-                    page === "educationalDetails" ||
-                    page === "personalDetails"
-                      ? "liNumber2"
-                      : "liNumber22"
-                  }
-                >
-                  2
-                </div>
-                <div> Educational Details</div>
-              </li>
-              <li>
-                <div
-                  className={
-                    page === "personalDetails" ? "liNumber3" : "liNumber33"
-                  }
-                >
-                  3
-                </div>
-                <div>Personal Details</div>
-              </li>
-              {/* <li>
+                  <div
+                    className={
+                      page === "basicDetails" ||
+                      page === "educationalDetails" ||
+                      page === "personalDetails"
+                        ? "liNumber1"
+                        : "liNumber11"
+                    }
+                  >
+                    1
+                  </div>
+                  <div> Basic Details</div>
+                </li>
+                <li>
+                  <div
+                    className={
+                      page === "educationalDetails" ||
+                      page === "personalDetails"
+                        ? "liNumber2"
+                        : "liNumber22"
+                    }
+                  >
+                    2
+                  </div>
+                  <div> Educational Details</div>
+                </li>
+                <li>
+                  <div
+                    className={
+                      page === "personalDetails" ? "liNumber3" : "liNumber33"
+                    }
+                  >
+                    3
+                  </div>
+                  <div>Personal Details</div>
+                </li>
+                {/* <li>
                 <div className={page === "Jobs" ? "liNumber4" : "liNumber44"}>
                   4
                 </div>
                 <div>Start Job Search</div>
               </li> */}
-            </ul>
+              </ul>
             </section>
             <section className="sec2" id="page">
               <Routes>
