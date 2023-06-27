@@ -1,11 +1,11 @@
-import React, { useEffect, usepassingYear } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from "axios";
 
 function EducationalDetails({ page, setPage, formData, setFormData }) {
-    const [success, setSuccess] = usepassingYear(null);
-  const [error, setError] = usepassingYear(null);
+  const [success, setSuccess] = useState(null);
+  const [error, setError] = useState(null);
   const navigate = useNavigate("");
   console.log("page3", page);
   function findPage() {
@@ -15,7 +15,6 @@ function EducationalDetails({ page, setPage, formData, setFormData }) {
     findPage();
   }, []);
   const initialValues = {
-    
     qualification: "",
     institute: "",
     passingYear: "",
@@ -27,7 +26,7 @@ function EducationalDetails({ page, setPage, formData, setFormData }) {
       institute: values.institute,
       passingYear: values.passingYear,
     });
-    navigate("personalDetails")
+    navigate("personalDetails");
   };
 
   const validateForm = (values) => {
@@ -118,7 +117,7 @@ function EducationalDetails({ page, setPage, formData, setFormData }) {
                 className="error-message"
               />
             </div>
-            <button className="cn" type="submit" >
+            <button className="cn" type="submit">
               Continue
             </button>
           </Form>
@@ -128,6 +127,4 @@ function EducationalDetails({ page, setPage, formData, setFormData }) {
   );
 }
 
-
-
-export default EducationalDetails
+export default EducationalDetails;

@@ -10,22 +10,13 @@ import { Toaster, toast } from "react-hot-toast";
 import VerificationCenter from "./VerificationCenter";
 import PhoneInput from "react-phone-number-input";
 
-function BasicDetails({
-  page,
-  setPage,
-  setFormData,
-  formData
-}) {
-  // const [value, setValue] = useState();
-
+function BasicDetails({ page, setPage, setFormData, formData }) {
   const [selectedFile, setSelectedFile] = useState(null);
   const recaptchaVerifierRef = useRef(null);
-
-  // const [success, setSuccess] = useState(null);
-  // const [error, setError] = useState(null);
-  // const [mobile, setMobile] = useState("");
   const [OTP, setOTP] = useState("");
   const [showOTP, setShowOTP] = useState(false);
+  const documentRef = useRef(null);
+  const [documentFile, setDocumentFile] = useState("");
 
   function findPage() {
     setPage("basicDetails");
@@ -51,10 +42,10 @@ function BasicDetails({
       file: selectedFile,
     };
     setFormData(formData);
-    navigate("verificationCenter");
+    navigate("educationalDetails");
 
     // console.log("ph",values.mobile);
-    onSignup(values.mobile);
+    // onSignup(values.mobile);
   };
 
   const validateForm = (values) => {
@@ -85,144 +76,165 @@ function BasicDetails({
     return errors;
   };
 
-  function onCaptchVerify() {
-    if (!window.recaptchaVerifier) {
-      window.recaptchaVerifier = new RecaptchaVerifier(
-        "recaptcha-container",
-        {
-          size: "invisible",
-          callback: (response) => {
-            onSignup();
-          },
-          "expired-callback": () => {},
-        },
-        auth
-      );
-    }
-  }
+  // function onCaptchVerify() {
+  //   if (!window.recaptchaVerifier) {
+  //     window.recaptchaVerifier = new RecaptchaVerifier(
+  //       "recaptcha-container",
+  //       {
+  //         size: "invisible",
+  //         callback: (response) => {
+  //           onSignup();
+  //         },
+  //         "expired-callback": () => {},
+  //       },
+  //       auth
+  //     );
+  //   }
+  // }
 
-  function onSignup(mobile) {
-    onCaptchVerify();
+  // function onSignup(mobile) {
+  //   onCaptchVerify();
 
-    const appVerifier = window.recaptchaVerifier;
+  //   const appVerifier = window.recaptchaVerifier;
 
-    const formatPh = "+919497606639" + mobile;
-    signInWithPhoneNumber(auth, formatPh, appVerifier)
-      .then((confirmationResult) => {
-        window.confirmationResult = confirmationResult;
-        setShowOTP(true);
-        toast.success("OTP send successfully");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
+  //   const formatPh = "+919497606639" + mobile;
+  //   signInWithPhoneNumber(auth, formatPh, appVerifier)
+  //     .then((confirmationResult) => {
+  //       window.confirmationResult = confirmationResult;
+  //       setShowOTP(true);
+  //       toast.success("OTP send successfully");
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }
 
-  function onOTPVerify() {
-    window.confirmationResult.confirm(OTP).then(async (res) => {
-      console.log(res);
-      navigate("verificationCenter")
-    })
-    .catch((err)=>{
-      console.log(err);
-    })
-  }
-  
-  
+  // function onOTPVerify() {
+  //   window.confirmationResult
+  //     .confirm(OTP)
+  //     .then(async (res) => {
+  //       console.log(res);
+  //       navigate("verificationCenter");
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }
+
+  const uploadDocument = () => {
+    console.log(documentRef);
+    documentRef.current.click();
+  };
+
+  const fileChoose = (e) => {
+    setDocumentFile(e.target.files[0]);
+    /* code for uplaod document.use when upload from submit*/
+    // const formData = new FormData();
+    // formData.append("myFile", documentFile);
+  };
 
   return (
     <div>
-      <Toaster toastOptions={{ duration: 4000 }} />
-       <div id="recaptcha-container"></div>
-      {showOTP ? (
-        
+      {/* <Toaster toastOptions={{ duration: 4000 }} />
+      <div id="recaptcha-container"></div> */}
+      {/* {showOTP ? (
         <VerificationCenter />
-      ) : (
-        <div className="page1 ">
-          {" "}
-          <Formik
-            initialValues={initialValues}
-            validate={validateForm}
-            onSubmit={handleSubmit}
-          >
-            <Form>
+      ) : ( */}
+      <div className="page1 ">
+        {" "}
+        <Formik
+          initialValues={initialValues}
+          validate={validateForm}
+          onSubmit={handleSubmit}
+        >
+          <Form>
+            <div>
               <div>
-                <div>
-                  <h3 className="heading">Create an Account</h3>
-                  <p className="heading2">
-                    It only takes a couple of minutes to get started!
-                  </p>
+                <h3 className="heading">Create an Account</h3>
+                <p className="heading2">
+                  It only takes a couple of minutes to get started!
+                </p>
+              </div>
+              <div>
+                <span className="itsFree">it's free</span>
+              </div>
+              <div className="socialLogin">
+                <div className="linkedinTab socialLoginTab">
+                  <a href="https://www.linkedin.com/login">
+                    <img
+                      src="https://media.foundit.in/trex/search/images/linkedin.svg"
+                      alt="icon"
+                    />
+                    LinkedIn
+                  </a>
                 </div>
-                <div>
-                  <span className="itsFree">it's free</span>
+                <div className="googleTab socialLoginTab">
+                  <a href="https://www.google.com">
+                    {" "}
+                    <img
+                      src="https://media.foundit.in/trex/search/images/google.svg"
+                      alt="icon"
+                    />
+                    Google
+                  </a>
                 </div>
-                <div className="socialLogin">
-                  <div className="linkedinTab socialLoginTab">
-                    <a href="https://www.linkedin.com/login">
-                      <img
-                        src="https://media.foundit.in/trex/search/images/linkedin.svg"
-                        alt="icon"
-                      />
-                      LinkedIn
-                    </a>
-                  </div>
-                  <div className="googleTab socialLoginTab">
-                    <a href="https://www.google.com">
-                      {" "}
-                      <img
-                        src="https://media.foundit.in/trex/search/images/google.svg"
-                        alt="icon"
-                      />
-                      Google
-                    </a>
-                  </div>
-                  <div className="facebookTab socialLoginTab">
-                    <a href="https://www.facebook.com/login/">
-                      <img
-                        src="https://media.foundit.in/trex/search/images/facebook.svg"
-                        alt="icon"
-                      />
-                      Facebook
-                    </a>
-                  </div>
+                <div className="facebookTab socialLoginTab">
+                  <a href="https://www.facebook.com/login/">
+                    <img
+                      src="https://media.foundit.in/trex/search/images/facebook.svg"
+                      alt="icon"
+                    />
+                    Facebook
+                  </a>
                 </div>
-
-                {/* upload resume */}
-                <div className="uploadResumeCont upld">
-                  <div className="uploadResume">
-                    <div className="uploadResumeContent">
-                      <div className="content">
+              </div>
+              <input
+                id="file"
+                name="file"
+                ref={documentRef}
+                onChange={fileChoose}
+                type="file"
+                accept="application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                style={{ display: "none" }}
+              />
+              {/* upload resume */}
+              <div onClick={uploadDocument} className="uploadResumeCont upld">
+                <div className="uploadResume">
+                  <div className="uploadResumeContent">
+                    <div className="content">
+                      {documentFile?.name ?? (
                         <div className="contentTilte">Upload Resume</div>
+                      )}
 
-                        <input
+                      {/* <input
                           id="file"
                           name="file"
                           type="file"
                           accept="application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
                           style={{ display: "none" }}
-                        />
+                        /> */}
 
-                        <div class="resumeFormat">
-                          *Doc, Docx, RTF, PDF (Max file size- 6MB)
-                        </div>
+                      <div class="resumeFormat">
+                        *Doc, Docx, RTF, PDF (Max file size- 6MB)
                       </div>
-                      <BsUpload
-                        className=" uploadIcon"
-                        type="file"
-                        name="file"
-                        onChange={(event) => {
-                          setSelectedFile(event.target.files);
-                        }}
-                      />
                     </div>
+                    <BsUpload
+                      className=" uploadIcon"
+                      type="file"
+                      name="file"
+                      onChange={(event) => {
+                        setSelectedFile(event.target.files);
+                      }}
+                    />
                   </div>
                 </div>
-                <div className="uploadButtonText">
-                  Profiles with resumes are 3x more likely to be noticed by
-                  recruiters
-                </div>
+              </div>
+              <div className="uploadButtonText">
+                Profiles with resumes are 3x more likely to be noticed by
+                recruiters
+              </div>
 
-                {/* <div className="uploadResumeCont upld">
+              {/* <div className="uploadResumeCont upld">
               <div className="upldResume">
                 <div className="contentTilte"> Upload Resume</div>
 
@@ -242,88 +254,85 @@ function BasicDetails({
               recruiters
             </div> */}
 
-                <div className="fieldGroup">
-                  <label htmlFor="fullName" className=" fieldLabel">
-                    Full Name
-                  </label>
-                  <Field
-                    type="text"
-                    name="fullName"
-                    className="field form-control formTextbox"
-                    placeholder="enter your full name"
-                  />
-                  <ErrorMessage
-                    name="fullName"
-                    component="div"
-                    className="error-message"
-                  />
-                </div>
-              </div>
               <div className="fieldGroup">
-                <label htmlFor="email" className=" fieldLabel">
-                  Email ID{" "}
+                <label htmlFor="fullName" className=" fieldLabel">
+                  Full Name
                 </label>
-                {"\u00A0"}
-                {"\u00A0"}
                 <Field
-                  type="email"
-                  name="email"
+                  type="text"
+                  name="fullName"
                   className="field form-control formTextbox"
-                  placeholder="enter your email"
+                  placeholder="enter your full name"
                 />
                 <ErrorMessage
-                  name="email"
+                  name="fullName"
                   component="div"
                   className="error-message"
                 />
               </div>
-              <div className="fieldGroup">
-                <label htmlFor="password" className="fieldLabel">
-                  Password
-                </label>
-                <Field
-                  type="password"
-                  name="password"
-                  className="field form-control formTextbox"
-                  placeholder="enter your password"
-                />
-                <ErrorMessage
-                  name="password"
-                  component="div"
-                  className="error-message"
-                />
-              </div>
+            </div>
+            <div className="fieldGroup">
+              <label htmlFor="email" className=" fieldLabel">
+                Email ID{" "}
+              </label>
+              {"\u00A0"}
+              {"\u00A0"}
+              <Field
+                type="email"
+                name="email"
+                className="field form-control formTextbox"
+                placeholder="enter your email"
+              />
+              <ErrorMessage
+                name="email"
+                component="div"
+                className="error-message"
+              />
+            </div>
+            <div className="fieldGroup">
+              <label htmlFor="password" className="fieldLabel">
+                Password
+              </label>
+              <Field
+                type="password"
+                name="password"
+                className="field form-control formTextbox"
+                placeholder="enter your password"
+              />
+              <ErrorMessage
+                name="password"
+                component="div"
+                className="error-message"
+              />
+            </div>
 
-              
+            <div className="fieldGroup">
+              <label htmlFor="mobile" className="fieldLabel">
+                Mobile
+              </label>
+              <br></br>
+              <Field
+                type="mobile"
+                placeholder="Enter phone number"
+                className="formMobile formTextbox"
+                name="mobile" // Update the name attribute here
+              />
 
-              <div className="fieldGroup">
-                <label htmlFor="mobile" className="fieldLabel">
-                  Mobile
-                </label>
-                <br></br>
-                <Field
-                  type="mobile"
-                  placeholder="Enter phone number"
-                  className="formMobile formTextbox"
-                  name="mobile" // Update the name attribute here
-                />
-
-
-                <ErrorMessage
-                  name="mobile"
-                  component="div"
-                  className="error-message"
-                />
-              </div>
-              <div>
-                <button className="cn" type="submit" >
-                  Continue
-                </button>
-              </div>
-            </Form>
-          </Formik>
-        </div>
-       )}  
+              <ErrorMessage
+                name="mobile"
+                component="div"
+                className="error-message"
+              />
+            </div>
+            <div>
+              <button className="cn" type="submit">
+                Continue
+              </button>
+            </div>
+          </Form>
+        </Formik>
+      </div>
+      {/* )}   */}
     </div>
   );
 }

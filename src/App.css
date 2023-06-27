@@ -241,7 +241,51 @@ page::-webkit-scrollbar{
     border-right: 2px solid rgb(187,181,192);
   }
   
+  /* home page*/
+  .home{
+    
+    background: url("https://media.foundit.in/trex/public/theme_3/dist/images/hero-section-desktop-guest.svg?8dbf3342cdc95b7e85dd4f4eec12fc75");
+    background-repeat: no-repeat ;
+    background-size: cover;
+    color: #f7f2fa;
+    height: 387px;
+    background-position: bottom;
+}
+.home-textContainer{
+    width: auto;
+    position: absolute;
+    top: 44%;
+    transform: translateY(-50%);
+    line-height: 36px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #1d1934;
+    margin: 0 27px;
+    left: 0;
+}
 
+.job-text{
+    margin-left: 550px;
+    margin-top: 100px!important;
+    text-align: center;
+    font-size: 25px;
+    line-height: 45px;
+}
+.regbtn{
+  margin-left: 595px; 
+}
+.add{
+    background: url("https://tpc.googlesyndication.com/simgad/13083617733137656442");
+    width: 800px;
+    height: 250px;
+    margin-top: 100px;
+    margin-left: 300px;   
+}
+.cardImg{
+    height: 200px;
+    width: 100%;
+    margin-top: -30px
+}
   
 
   /*Media query for mobile devices*/
@@ -254,12 +298,32 @@ page::-webkit-scrollbar{
         width: 100%;
     }
    #logo{
-    left: 0;
+    left: 20px;
    } 
    .login{
-    margin-left: 15px;
+    margin-left: 80px;
    }
+   .home{
+    margin-top: 40px;
 }
+/* .home-textContainer{
+  left: -500px;
+  top: -145px;
+} */
+.job-text{
+    margin-left: 59px!important;
+    margin-top: -100px!important;   
+}
+.regbtn{
+  margin-left: 90px;
+}
+.add{
+    margin-left: 5px!important;
+    width: 348px;
+}
+}
+
+
 
 /*media query for low resolution Tablets,,ipads */
 @media (min-width:481px) and (max-width: 767px){
@@ -270,6 +334,28 @@ page::-webkit-scrollbar{
     .sec2{
         width: 100%;
     }
+    .home{
+      margin-top: 40px;
+  }
+  .home-textContainer{
+      width: auto;
+      
+      transform: translateY(-50%);
+      line-height: 36px;
+      font-size: 24px;
+      font-weight: 600;
+      color: #1d1934;
+  }
+  .job-text{
+      margin-left: -500px!important;
+      margin-top: -300px!important;
+      position: absolute;
+  }
+  .add{
+      margin-left: 30px!important;
+      width: 100%;
+  }
+    
 }
 
 /*media query for tablets ipads portaits mode*/
@@ -281,6 +367,25 @@ page::-webkit-scrollbar{
     .sec2{
         width: 100%;
     }
+    .home-textContainer{
+      width: auto;
+      position: absolute;
+      transform: translateY(-50%);
+      line-height: 36px;
+      font-size: 24px;
+      font-weight: 600;
+      color: #1d1934;
+  }
+  .job-text{
+      margin-left: -500px!important;
+      margin-top: -300px!important;
+     
+  }
+  
+  .add{
+      margin-left: 30px!important;
+      width: 100%;
+  }
 }
 
 /*media query for laptops and desktops*/

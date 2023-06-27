@@ -43,7 +43,7 @@ function PersonalDetails({ page, setPage, formData, setFormData }) {
       .catch((error) => {
         console.error("Error:", error);
       });
-      console.log("mydata",formData)
+    console.log("mydata", formData);
   }, [formData]);
 
   const validateForm = (values) => {
@@ -134,7 +134,13 @@ function PersonalDetails({ page, setPage, formData, setFormData }) {
                 className="error-message"
               />
             </div>
-            <button className="cn" type="submit" onClick={()=>{alert("Registered Successfully"); navigate("Jobs")}}>
+            <button
+              className="cn"
+              type="submit"
+              onClick={() => {
+                alert("Registered Successfully");
+              }}
+            >
               Submit
             </button>
           </Form>
