@@ -1,6 +1,6 @@
 import "./App.css";
 import { Routes, Route } from "react-router";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import BasicDetails from "./components/BasicDetails";
 import VerificationCenter from "./components/VerificationCenter";
 import PersonalDetails from "./components/PersonalDetails";
@@ -20,12 +20,14 @@ function App() {
     <>
       <div>
         <header className="hd">
-          <a href="/">
-            <img id="logo" src={logo} alt="logo"></img>
+          <a  href="/basicDetails"
+                target="_blank">
+            <img id="logo" src={logo} alt="logo" ></img>
           </a>
 
-          <a style={{ textDecoration: "none" }} href="/basicDetails">
-            <span className="login text-color">Register </span>
+          <a style={{ textDecoration: "none" }}  href="/basicDetails"
+                target="_blank">
+            <span className="login text-color" >Register </span>
           </a>
         </header>
         {page === "home" ? (
@@ -106,7 +108,7 @@ function App() {
             </section>
             <section className="sec2" id="page">
               <Routes>
-                <Route
+                {/* <Route
                   path="basicDetails"
                   element={
                     <BasicDetails
@@ -119,7 +121,7 @@ function App() {
                       setShowOTP
                     ></BasicDetails>
                   }
-                />
+                /> */}
                 <Route
                   path="/"
                   element={
@@ -136,20 +138,22 @@ function App() {
                     // ></BasicDetails>
                   }
                 />
-                {/* <Route
-                  path="basicDetails/verificationCenter"
+                <Route
+                  path="/basicDetails"
                   element={
-                    <VerificationCenter
+                    // <Home page setPage={setPage} />
+
+                    <BasicDetails
                       setPage={setPage}
                       setFormData={setFormData}
-                      formData={formData}
+                      formData ={formData}
                       OTP
                       setOTP
                       showOTP
                       setShowOTP
-                    ></VerificationCenter>
+                    ></BasicDetails>
                   }
-                /> */}
+                />
                 <Route
                   path="basicDetails/educationalDetails"
                   element={
@@ -182,3 +186,9 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
+

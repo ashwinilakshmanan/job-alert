@@ -3,8 +3,11 @@ import { useEffect } from "react";
 import "../App.css";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import { Link, useNavigate } from "react-router-dom";
 
 function Home({ page, setPage }) {
+  const navigate = useNavigate();
+
   function findPage() {
     setPage("home");
   }
@@ -12,6 +15,8 @@ function Home({ page, setPage }) {
   useEffect(() => {
     findPage();
   }, []);
+
+
   return (
     <>
       <div className="home">
@@ -23,7 +28,11 @@ function Home({ page, setPage }) {
             </p>
 
             <div>
-              <a style={{ textDecoration: "none" }} href="/basicDetails">
+              <a
+                style={{ textDecoration: "none" }}
+                href="/basicDetails"
+                target="_blank"
+              >
                 <Button variant="primary" className="regbtn">
                   Register
                 </Button>

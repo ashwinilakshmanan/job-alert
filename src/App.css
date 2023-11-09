@@ -291,11 +291,11 @@ page::-webkit-scrollbar{
   /*Media query for mobile devices*/
 @media(max-width: 480px){
     .sec1{
-        width: 0%;
+        width: 30%;
         display:none
     }
     .sec2{
-        width: 100%;
+        width: 100%!important;
     }
    #logo{
     left: 20px;

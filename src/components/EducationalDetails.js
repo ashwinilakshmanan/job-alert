@@ -50,7 +50,7 @@ function EducationalDetails({ page, setPage, formData, setFormData }) {
         {" "}
         <Formik
           initialValues={initialValues}
-          validate={validateForm}
+          // validate={validateForm}
           onSubmit={handleSubmit}
         >
           <Form>

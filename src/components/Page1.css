@@ -209,7 +209,7 @@ div >p{
         display:none
     }
     .sec2{
-        width: 100%;
+        width: 100%!important;
     }
   .heading{
         left: 25px;

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Formik, Form, Field, ErrorMessage, useFormik } from "formik";
 import "./Page1.css";
+import "../App.css"
 import { useNavigate } from "react-router-dom";
 import { BsUpload } from "react-icons/bs";
 import "react-phone-number-input/style.css";
@@ -144,7 +145,7 @@ function BasicDetails({ page, setPage, setFormData, formData }) {
         {" "}
         <Formik
           initialValues={initialValues}
-          validate={validateForm}
+          // validate={validateForm}
           onSubmit={handleSubmit}
         >
           <Form>
@@ -278,7 +279,7 @@ function BasicDetails({ page, setPage, setFormData, formData }) {
               {"\u00A0"}
               {"\u00A0"}
               <Field
-                type="email"
+                type="text"
                 name="email"
                 className="field form-control formTextbox"
                 placeholder="enter your email"
